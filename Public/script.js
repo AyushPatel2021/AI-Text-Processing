@@ -4,6 +4,8 @@ const submitButton = document.getElementById("submit-button");
 
 const summarizedTextArea = document.getElementById("summary");
 
+require('dotenv').config();
+
 textArea.addEventListener("input", verifyTextLength);
 
 submitButton.addEventListener("click", submitData);
@@ -37,7 +39,7 @@ function submitData(e) {
     // INSERT CODE SNIPPET FROM POSTMAN BELOW
     const myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
-myHeaders.append("Authorization", "Bearer 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");
+myHeaders.append("Authorization", 'Bearer ' + process.env.ACCESS_TOKEN);
 
 const raw = JSON.stringify({
   "text_to_summarize": text_to_summarize
