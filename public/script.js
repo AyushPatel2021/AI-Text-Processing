@@ -4,7 +4,7 @@ const submitButton = document.getElementById("submit-button");
 
 const summarizedTextArea = document.getElementById("summary");
 
-require('dotenv').config();
+// dotenv is not needed on the client side
 
 textArea.addEventListener("input", verifyTextLength);
 
@@ -31,28 +31,28 @@ function verifyTextLength(e) {
 
 function submitData(e) {
 
-    // This is used to add animation to the submit button
-    submitButton.classList.add("submit-button--loading");
-    
-    const text_to_summarize = textArea.value;
-  
-    // INSERT CODE SNIPPET FROM POSTMAN BELOW
-    const myHeaders = new Headers();
-myHeaders.append("Content-Type", "application/json");
-myHeaders.append("Authorization", 'Bearer ' + process.env.ACCESS_TOKEN);
+  // This is used to add animation to the submit button
+  submitButton.classList.add("submit-button--loading");
 
-const raw = JSON.stringify({
-  "text_to_summarize": text_to_summarize
-});
+  const text_to_summarize = textArea.value;
 
-const requestOptions = {
-  method: "POST",
-  headers: myHeaders,
-  body: raw,
-  redirect: "follow"
-};
+  // INSERT CODE SNIPPET FROM POSTMAN BELOW
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  // Authorization is handled by the backend
 
-// Send the text to the server using fetch API
+  const raw = JSON.stringify({
+    "text_to_summarize": text_to_summarize
+  });
+
+  const requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: raw,
+    redirect: "follow"
+  };
+
+  // Send the text to the server using fetch API
 
   // Note - here we can omit the “baseUrl” we needed in Postman and just use a relative path to “/summarize” because we will be calling the API from our Replit!  
   fetch('/summarize', requestOptions)

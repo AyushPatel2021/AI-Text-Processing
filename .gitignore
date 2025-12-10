@@ -129,6 +129,3 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-# Additional entries from the remote
-.env
-node_modules/
